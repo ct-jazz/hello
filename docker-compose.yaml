@@ -36,8 +36,7 @@ services:
       - backnet
       - frontnet
     depends_on:
-      db:
-        condition: service_healthy
+      - db
   proxy:
     build: proxy
     restart: always
