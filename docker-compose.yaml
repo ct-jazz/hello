@@ -14,7 +14,9 @@ services:
     secrets:
       - db-password
     volumes:
-      - db-data:/var/lib/mysql
+      - type: volume
+        source: db-data
+        target: /var/lib/mysql
     networks:
       - backnet
     environment:
@@ -31,8 +33,12 @@ services:
     ports:
       - 5000:5000
     volumes:
-      - db-data:/var/lib/mysql
-      - /test:/var/test
+      - type: bind
+        source: /test
+        target: /var/test
+      - type: volume
+        source: db-data
+        target: /var/lib/mysql
     networks:
       - backnet
       - frontnet
